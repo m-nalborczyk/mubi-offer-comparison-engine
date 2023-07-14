@@ -4,15 +4,32 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import static driver.DriverFactory.getDriver;
 
 public class Compare_Car_Insurance {
 
-    @Given("I access Mubi car insurance offer comparison page")
-    public void i_access_mubi_car_insurance_offer_comparison_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    private WebDriver driver = getDriver();
+
+    @Given("I access Mubi insurance offer comparison page")
+    public void i_access_mubi_insurance_offer_comparison_page() {
+        driver.get("https://mubi.pl/");
     }
-    @When("I choose car insurance")
+    @When("I accept cookies popup")
+    public void i_accept_cookies() {
+        driver.findElement(By.xpath("//input[@id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll\"]")).click();
+    }
+    @And("I choose OC AC Insurance")
+    public void i_choose_oc_ac_insurance() {
+        driver.findElement(By.xpath("//input[@id=\"travel\"]")).click();
+    }
+    @And("I click on 'Compare offers'")
+    public void i_click_on_compare_offers() {
+        driver.findElement(By.cssSelector(".button.compare-btn.font-bold.font-ms.shift-arrow")).click();
+    }
+    @And("I choose car insurance")
     public void i_choose_car_insurance() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
@@ -22,7 +39,7 @@ public class Compare_Car_Insurance {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-    @And("I choose a specific year from the drop down list")
+    @And("I choose a specific year from the drop down list {}")
     public void i_choose_a_specific_year_from_the_drop_down_list() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
