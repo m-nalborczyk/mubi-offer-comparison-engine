@@ -5,25 +5,35 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObject.Base_PO;
+import java.time.Duration;
 
-import static driver.DriverFactory.getDriver;
 
-public class Compare_Car_Insurance {
+public class Compare_Car_Insurance extends Base_PO {
 
     private WebDriver driver = getDriver();
 
     @Given("I access Mubi insurance offer comparison page")
     public void i_access_mubi_insurance_offer_comparison_page() {
-        driver.get("https://mubi.pl/");
+        navigateToUrl("https://mubi.pl/");
     }
     @When("I accept cookies popup")
     public void i_accept_cookies() {
-        driver.findElement(By.xpath("//input[@id=\"CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll\"]")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")));
+        WebElement element = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
+        element.click();
     }
+
     @And("I choose OC AC Insurance")
     public void i_choose_oc_ac_insurance() {
-        driver.findElement(By.xpath("//input[@id=\"travel\"]")).click();
+        driver.findElement(By.xpath("//input[@id=\"oc\"]")).click();
     }
     @And("I click on 'Compare offers'")
     public void i_click_on_compare_offers() {
@@ -31,28 +41,45 @@ public class Compare_Car_Insurance {
     }
     @And("I choose car insurance")
     public void i_choose_car_insurance() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[data-field-key='vehicleType'] input.jss253[value='car']")));
+        radioButton.click();
     }
-    @And("I choose none leased")
-    public void i_choose_none_leased() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific year from the drop down list 2002")
+    public void i_choose_a_specific_year_from_the_drop_down_list_2002() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        WebElement svgIcon = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html//div[@id='root']/div[@class='jss1']/div[3]/div[@class='jss77']/main[@class='jss78']/form/fieldset[@class='jss129']//div[@class='jss139 jss140']//div[@role='combobox']//input")));
+        svgIcon.click();
+        Actions actions = new Actions(driver);
+        int numClicks = 11;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(300);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1500);
     }
-    @And("I choose a specific year from the drop down list {}")
-    public void i_choose_a_specific_year_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific brand from the drop down list VOLKSWAGEN")
+    public void i_choose_a_specific_brand_from_the_drop_down_list_VOLKSWAGEN() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 6;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(300);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1500);
     }
-    @And("I choose a specific brand from the drop down list")
-    public void i_choose_a_specific_brand_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @And("I choose a specific model from the drop down list")
-    public void i_choose_a_specific_model_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific model from the drop down list PASSAT")
+    public void i_choose_a_specific_model_from_the_drop_down_list_PASSAT() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 8;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(300);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1500);
     }
     @And("I choose a specific fuel from the drop down list")
     public void i_choose_a_specific_fuel_from_the_drop_down_list() {
