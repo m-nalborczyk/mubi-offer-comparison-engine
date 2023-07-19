@@ -25,7 +25,7 @@ public class Compare_Car_Insurance extends Base_PO {
     }
     @When("I accept cookies popup")
     public void i_accept_cookies() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")));
         WebElement element = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
         element.click();
@@ -47,28 +47,27 @@ public class Compare_Car_Insurance extends Base_PO {
     }
     @And("I choose a specific year from the drop down list 2002")
     public void i_choose_a_specific_year_from_the_drop_down_list_2002() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement svgIcon = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html//div[@id='root']/div[@class='jss1']/div[3]/div[@class='jss77']/main[@class='jss78']/form/fieldset[@class='jss129']//div[@class='jss139 jss140']//div[@role='combobox']//input")));
         svgIcon.click();
         Actions actions = new Actions(driver);
         int numClicks = 11;
         for (int i = 0; i<numClicks; i++){
             actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(300);
+            Thread.sleep(500);
         }
         actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1500);
     }
     @And("I choose a specific brand from the drop down list VOLKSWAGEN")
-    public void i_choose_a_specific_brand_from_the_drop_down_list_VOLKSWAGEN() throws InterruptedException {
+    public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen() throws InterruptedException {
         Actions actions = new Actions(driver);
         int numClicks = 6;
         for (int i = 0; i<numClicks; i++){
             actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(300);
+            Thread.sleep(500);
         }
         actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1500);
+
     }
     @And("I choose a specific model from the drop down list PASSAT")
     public void i_choose_a_specific_model_from_the_drop_down_list_PASSAT() throws InterruptedException {
@@ -76,61 +75,102 @@ public class Compare_Car_Insurance extends Base_PO {
         int numClicks = 8;
         for (int i = 0; i<numClicks; i++){
             actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(300);
+            Thread.sleep(500);
         }
         actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1500);
     }
-    @And("I choose a specific fuel from the drop down list")
-    public void i_choose_a_specific_fuel_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific fuel from the drop down list DIESEL")
+    public void i_choose_a_specific_fuel_from_the_drop_down_list_diesel() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 2;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
-    @And("I choose a specific engine size from the drop down list")
-    public void i_choose_a_specific_engine_size_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific engine size from the drop down list 1896cm3")
+    public void i_choose_a_specific_engine_size_from_the_drop_down_list_1896cm3() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 1;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
-    @And("I choose a specific doors amount from the drop down list")
-    public void i_choose_a_specific_doors_amount_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific doors amount from the drop down list 5doors")
+    public void i_choose_a_specific_doors_amount_from_the_drop_down_list_5doors() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 2;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
-    @And("I choose a specific version from the drop down list")
-    public void i_choose_a_specific_version_from_the_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific version from the drop down list COMFORTLINE")
+    public void i_choose_a_specific_version_from_the_drop_down_list_comfortline() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        int numClicks = 3;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
-    @And("I enter a specific date for start of the insurance")
-    public void i_enter_a_specific_date_for_start_of_the_insurance() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I enter a specific date for start of the insurance 01082023")
+    public void i_enter_a_specific_date_for_start_of_the_insurance() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement insurenceDate = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"insurance.startDate\"]")));
+        insurenceDate.sendKeys("01082023");
+        Thread.sleep(500);
+        driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
+        Thread.sleep(500);
+        WebElement consentRegulations = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"consent.regulations\"]")));
+        consentRegulations.click();
+        driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
     }
-    @And("I choose for personal use")
-    public void i_choose_for_personal_use() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose for private usage")
+    public void i_choose_for_private_usage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='plannedUsage.wayOfUse'][1]")));
+        radioButton.click();
     }
-    @And("I enter a specific mileage")
+    @And("I enter a specific mileage 330 thousands km")
     public void i_enter_a_specific_mileage() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//input[@name=\"car.mileage\"]")).sendKeys("330");
+
     }
-    @And("I enter a specific {int}-month prediction distance")
-    public void i_enter_a_specific_month_prediction_distance(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I enter a specific 12-month prediction distance up to 20k km")
+    public void i_enter_a_specific_month_prediction_distance() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement yearlyMileagePrediction = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"plannedUsage.yearlyMileage\"]")));
+        yearlyMileagePrediction.click();
+        Actions actions = new Actions(driver);
+        int numClicks = 4;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
-    @And("I enter a specific date of first registration")
+    @And("I enter a specific date of first registration 29042002")
     public void i_enter_a_specific_date_of_first_registration() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//input[@name=\"car.firstRegistrationDate\"]")).sendKeys("29042002");
     }
-    @And("I choose a specific date of car ownership start")
-    public void i_choose_a_specific_date_of_car_ownership_start() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific year of car purchase 2003")
+    public void i_choose_a_specific_year_of_car_purchase() throws InterruptedException {
+        driver.findElement(By.xpath("//input[@name=\"car.ownerPurchaseYear\"]")).click();
+        Actions actions = new Actions(driver);
+        int numClicks = 2;
+        for (int i = 0; i<numClicks; i++){
+            actions.sendKeys(Keys.DOWN).perform();
+            Thread.sleep(500);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
+
     @And("I enter a specific registration plate number")
     public void i_enter_a_specific_registration_plate_number() {
         // Write code here that turns the phrase above into concrete actions
