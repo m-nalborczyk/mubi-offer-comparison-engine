@@ -4,10 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,93 +45,77 @@ public class Compare_Car_Insurance extends Base_PO {
     @And("I choose a specific year from the drop down list 2002")
     public void i_choose_a_specific_year_from_the_drop_down_list_2002() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement svgIcon = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html//div[@id='root']/div[@class='jss1']/div[3]/div[@class='jss77']/main[@class='jss78']/form/fieldset[@class='jss129']//div[@class='jss139 jss140']//div[@role='combobox']//input")));
-        svgIcon.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Rok produkcji\"]"))).sendKeys("2002");
         Actions actions = new Actions(driver);
-        int numClicks = 11;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
         actions.sendKeys(Keys.ENTER).perform();
+
     }
     @And("I choose a specific brand from the drop down list VOLKSWAGEN")
-    public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen() throws InterruptedException {
+    public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen()  {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        int numClicks = 6;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Marka\"]"))).sendKeys("VOLKSWAGEN");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
+
 
     }
     @And("I choose a specific model from the drop down list PASSAT")
     public void i_choose_a_specific_model_from_the_drop_down_list_PASSAT() throws InterruptedException {
         Actions actions = new Actions(driver);
-        int numClicks = 8;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Model\"]"))).sendKeys("PASSAT");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific fuel from the drop down list DIESEL")
     public void i_choose_a_specific_fuel_from_the_drop_down_list_diesel() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        int numClicks = 2;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Rodzaj paliwa\"]"))).sendKeys("DIESEL");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific engine size from the drop down list 1896cm3")
     public void i_choose_a_specific_engine_size_from_the_drop_down_list_1896cm3() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        int numClicks = 1;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Pojemność silnika\"]"))).sendKeys("1896");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific doors amount from the drop down list 5doors")
     public void i_choose_a_specific_doors_amount_from_the_drop_down_list_5doors() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        int numClicks = 2;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Liczba drzwi\"]"))).sendKeys("5");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific version from the drop down list COMFORTLINE")
     public void i_choose_a_specific_version_from_the_drop_down_list_comfortline() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        int numClicks = 3;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Wersja\"]"))).sendKeys("COMFORTLINE");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I enter a specific date for start of the insurance 01082023")
     public void i_enter_a_specific_date_for_start_of_the_insurance() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement insurenceDate = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"insurance.startDate\"]")));
+        WebElement insurenceDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"insurance.startDate\"]")));
         insurenceDate.sendKeys("01082023");
         Thread.sleep(500);
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
         Thread.sleep(500);
-        WebElement consentRegulations = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"consent.regulations\"]")));
+        WebElement consentRegulations = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"consent.regulations\"]")));
         consentRegulations.click();
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
     }
     @And("I choose for private usage")
     public void i_choose_for_private_usage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='plannedUsage.wayOfUse'][1]")));
+        WebElement radioButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='plannedUsage.wayOfUse'][1]")));
         radioButton.click();
     }
     @And("I enter a specific mileage 330 thousands km")
@@ -145,7 +126,7 @@ public class Compare_Car_Insurance extends Base_PO {
     @And("I enter a specific 12-month prediction distance up to 20k km")
     public void i_enter_a_specific_month_prediction_distance() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement yearlyMileagePrediction = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"plannedUsage.yearlyMileage\"]")));
+        WebElement yearlyMileagePrediction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"plannedUsage.yearlyMileage\"]")));
         yearlyMileagePrediction.click();
         Actions actions = new Actions(driver);
         int numClicks = 4;
