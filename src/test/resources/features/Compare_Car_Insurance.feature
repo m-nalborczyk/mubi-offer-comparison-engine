@@ -22,22 +22,23 @@ Feature: Mubi - Compare Vehicle Insurance Offers Page
     And I enter a specific 12-month prediction distance up to 20k km
     And I enter a specific date of first registration 29042002
     And I choose a specific year of car purchase 2003
-    And I enter a specific registration plate number
+    And I choose a specific country of first registration Poland
+    And I enter a specific registration plate number SB49033
     And I choose common garage parking spot from drop down list
-    And I choose 'different' as present car insurer from drop down list
+    And I choose a specific previous Insurer Euroins
     And I choose less amount of offers without providing personal details
-    And I enter owner's specific date of birth
-    And I choose a specific year of getting driver's licence
-    And I enter a specific address postal code
+    And I enter owner's specific date of birth 01.01.1990
+    And I choose a specific year of getting driver's licence 2008
+    And I enter a specific address postal code 43-300
     And I choose male gender
     And I choose single martial status
     And I choose not having children below 26 years old
     And I choose 0 additional owners of the car
-    And I no additional users of the car
-    And I choose 'at least 6 years' of buying car insurance from drop down list
-    And I choose 'no insurance claims' from drop down list
+    And I choose no additional users of the car
+    And I choose as the owner buying OC insurance for at least 6 years
+    And I choose no OC insurance ever claimed
     And I choose no AC insurance history
-    And I click on 'Calculate' button
+    And I click on CALCULATE button
     Then I should be presented with successful offers page
 
 

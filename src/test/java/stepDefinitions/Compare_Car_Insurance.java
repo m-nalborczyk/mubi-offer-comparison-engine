@@ -8,8 +8,10 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import pageObject.Base_PO;
 import java.time.Duration;
+import java.util.List;
 
 
 public class Compare_Car_Insurance extends Base_PO {
@@ -23,7 +25,7 @@ public class Compare_Car_Insurance extends Base_PO {
     @When("I accept cookies popup")
     public void i_accept_cookies() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")));
         WebElement element = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
         element.click();
     }
@@ -45,7 +47,7 @@ public class Compare_Car_Insurance extends Base_PO {
     @And("I choose a specific year from the drop down list 2002")
     public void i_choose_a_specific_year_from_the_drop_down_list_2002() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Rok produkcji\"]"))).sendKeys("2002");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Rok produkcji\"]"))).sendKeys("2002");
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.ENTER).perform();
 
@@ -54,7 +56,7 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen()  {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Marka\"]"))).sendKeys("VOLKSWAGEN");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Marka\"]"))).sendKeys("VOLKSWAGEN");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
 
@@ -64,7 +66,7 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_model_from_the_drop_down_list_PASSAT() throws InterruptedException {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Model\"]"))).sendKeys("PASSAT");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Model\"]"))).sendKeys("PASSAT");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
@@ -72,7 +74,7 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_fuel_from_the_drop_down_list_diesel() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Rodzaj paliwa\"]"))).sendKeys("DIESEL");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Rodzaj paliwa\"]"))).sendKeys("DIESEL");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
@@ -80,7 +82,7 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_engine_size_from_the_drop_down_list_1896cm3() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Pojemność silnika\"]"))).sendKeys("1896");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Pojemność silnika\"]"))).sendKeys("1896");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
@@ -88,7 +90,7 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_doors_amount_from_the_drop_down_list_5doors() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Liczba drzwi\"]"))).sendKeys("5");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Liczba drzwi\"]"))).sendKeys("5");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
     }
@@ -96,27 +98,29 @@ public class Compare_Car_Insurance extends Base_PO {
     public void i_choose_a_specific_version_from_the_drop_down_list_comfortline() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder=\"Wersja\"]"))).sendKeys("COMFORTLINE");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Wersja\"]"))).sendKeys("COMFORTLINE");
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1000);
     }
     @And("I enter a specific date for start of the insurance 01082023")
     public void i_enter_a_specific_date_for_start_of_the_insurance() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement insurenceDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"insurance.startDate\"]")));
+        WebElement insurenceDate = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"insurance.startDate\"]")));
         insurenceDate.sendKeys("01082023");
         Thread.sleep(500);
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
         Thread.sleep(500);
-        WebElement consentRegulations = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"consent.regulations\"]")));
+        WebElement consentRegulations = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name=\"consent.regulations\"]")));
         consentRegulations.click();
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
     }
     @And("I choose for private usage")
     public void i_choose_for_private_usage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement radioButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='plannedUsage.wayOfUse'][1]")));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='plannedUsage.wayOfUse'][1]")));
         radioButton.click();
+
     }
     @And("I enter a specific mileage 330 thousands km")
     public void i_enter_a_specific_mileage() {
@@ -124,17 +128,13 @@ public class Compare_Car_Insurance extends Base_PO {
 
     }
     @And("I enter a specific 12-month prediction distance up to 20k km")
-    public void i_enter_a_specific_month_prediction_distance() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement yearlyMileagePrediction = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"plannedUsage.yearlyMileage\"]")));
-        yearlyMileagePrediction.click();
+    public void i_enter_a_specific_month_prediction_distance()  {
         Actions actions = new Actions(driver);
-        int numClicks = 4;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"plannedUsage.yearlyMileage\"]"))).sendKeys("25");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
+
     }
     @And("I enter a specific date of first registration 29042002")
     public void i_enter_a_specific_date_of_first_registration() {
@@ -142,100 +142,134 @@ public class Compare_Car_Insurance extends Base_PO {
     }
     @And("I choose a specific year of car purchase 2003")
     public void i_choose_a_specific_year_of_car_purchase() throws InterruptedException {
-        driver.findElement(By.xpath("//input[@name=\"car.ownerPurchaseYear\"]")).click();
         Actions actions = new Actions(driver);
-        int numClicks = 2;
-        for (int i = 0; i<numClicks; i++){
-            actions.sendKeys(Keys.DOWN).perform();
-            Thread.sleep(500);
-        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"car.ownerPurchaseYear\"]"))).sendKeys("2003");
+        actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
     }
 
-    @And("I enter a specific registration plate number")
+    @And("I choose a specific country of first registration Poland")
+    public void i_choose_a_specific_country_of_first_registration_poland() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='car.firstRegistrationCountry'][1]")));
+        radioButton.click();
+    }
+
+    @And("I enter a specific registration plate number SB49033")
     public void i_enter_a_specific_registration_plate_number() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//input[@name=\"car.registrationNumber\"]")).sendKeys("SB49033");
     }
     @And("I choose common garage parking spot from drop down list")
-    public void i_choose_common_garage_parking_spot_from_drop_down_list() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void i_choose_common_garage_parking_spot_from_drop_down_list() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"plannedUsage.nightParkingPlace\"]"))).sendKeys("We wspólnym garażu");
+        actions.sendKeys(Keys.DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
     }
-    @And("I choose {string} as present car insurer from drop down list")
-    public void i_choose_as_present_car_insurer_from_drop_down_list(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific previous Insurer Euroins")
+    public void i_choose_a_specific_previous_insurer() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"car.previousInsurer\"]"))).sendKeys("Euroins");
+        actions.sendKeys(Keys.DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
+        Thread.sleep(3000);
+
     }
     @And("I choose less amount of offers without providing personal details")
     public void i_choose_less_amount_of_offers_without_providing_personal_details() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        //to be implemented
     }
-    @And("I enter owner's specific date of birth")
+    @And("I enter owner's specific date of birth 01.01.1990")
     public void i_enter_owner_s_specific_date_of_birth() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//input[@name=\"owner.birthDate\"]")).sendKeys("01011990");
     }
-    @And("I choose a specific year of getting driver's licence")
-    public void i_choose_a_specific_year_of_getting_driver_s_licence() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose a specific year of getting driver's licence 2008")
+    public void i_choose_a_specific_year_of_getting_driver_s_licence() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"owner.driverLicenseYear\"]"))).sendKeys("2008");
+        actions.sendKeys(Keys.DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
     }
-    @And("I enter a specific address postal code")
+    @And("I enter a specific address postal code 43-300")
     public void i_enter_a_specific_address_postal_code() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//input[@name=\"owner.legalAddress.zipCode\"]")).sendKeys("43300");
     }
     @And("I choose male gender")
-    public void i_choose_male_gender() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void i_choose_male_gender() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='owner.gender'][1]")));
+        radioButton.click();
+        Thread.sleep(500);
     }
     @And("I choose single martial status")
-    public void i_choose_single_martial_status() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void i_choose_single_martial_status() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='owner.maritalStatus'][1]")));
+        radioButton.click();
+        Thread.sleep(500);
+        }
+    @And("I choose not having children below 26 years old")
+    public void i_choose_not_having_children_below_years_old() {
+        List<WebElement> radioButtons = driver.findElements(By.name("owner.hasChildren"));
+        WebElement radioButton = radioButtons.get(1);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(radioButton).click().perform();
+
     }
-    @And("I choose not having children below {int} years old")
-    public void i_choose_not_having_children_below_years_old(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose 0 additional owners of the car")
+    public void i_choose_0_additional_owners_of_the_car() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='car.coownersCount'][1]")));
+        radioButton.click();
     }
-    @And("I choose {int} additional owners of the car")
-    public void i_choose_additional_owners_of_the_car(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose no additional users of the car")
+    public void i_choose_no_additional_users_of_the_car() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='car.car.hasAdditionalDrivers'][2]")));
+        radioButton.click();
     }
-    @And("I no additional users of the car")
-    public void i_no_additional_users_of_the_car() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("I choose as the owner buying OC insurance for at least 6 years")
+    public void i_choose_of_buying_car_insurance_from_drop_down_list() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"owner.ocInsuranceHistory.length\"]"))).sendKeys("co najmniej sześć lat");
+        actions.sendKeys(Keys.DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
     }
-    @And("I choose {string} of buying car insurance from drop down list")
-    public void i_choose_of_buying_car_insurance_from_drop_down_list(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @And("I choose {string} from drop down list")
+    @And("I choose no OC insurance ever claimed")
     public void i_choose_from_drop_down_list(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"owner.ocInsuranceHistory.claimsCount\"]"))).sendKeys("Nie, nie było");
+        actions.sendKeys(Keys.DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose no AC insurance history")
     public void i_choose_no_ac_insurance_history() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='owner.acHistorySame'][3]")));
+        radioButton.click();
     }
-    @And("I click on {string} button")
+    @And("I click on CALCULATE button")
     public void i_click_on_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
     }
     @Then("I should be presented with successful offers page")
     public void i_should_be_presented_with_successful_offers_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        WebElement offersHeading = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("jss1081")));
+        String textOffersHeading = offersHeading.getText();
+        System.out.println(textOffersHeading);
+        Assert.assertTrue(textOffersHeading.contains("Znaleźliśmy"), "No offers have been found for provided details");
     }
 
 
