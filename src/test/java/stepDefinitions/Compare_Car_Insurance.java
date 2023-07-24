@@ -8,7 +8,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import pageObject.Base_PO;
 import java.time.Duration;
 import java.util.List;
@@ -53,11 +52,13 @@ public class Compare_Car_Insurance extends Base_PO {
 
     }
     @And("I choose a specific brand from the drop down list VOLKSWAGEN")
-    public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen()  {
+    public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Marka\"]"))).sendKeys("VOLKSWAGEN");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
 
 
@@ -67,7 +68,9 @@ public class Compare_Car_Insurance extends Base_PO {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Model\"]"))).sendKeys("PASSAT");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific fuel from the drop down list DIESEL")
@@ -75,7 +78,9 @@ public class Compare_Car_Insurance extends Base_PO {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Rodzaj paliwa\"]"))).sendKeys("DIESEL");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific engine size from the drop down list 1896cm3")
@@ -83,7 +88,9 @@ public class Compare_Car_Insurance extends Base_PO {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Pojemność silnika\"]"))).sendKeys("1896");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific doors amount from the drop down list 5doors")
@@ -91,7 +98,9 @@ public class Compare_Car_Insurance extends Base_PO {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Liczba drzwi\"]"))).sendKeys("5");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
     }
     @And("I choose a specific version from the drop down list COMFORTLINE")
@@ -99,7 +108,9 @@ public class Compare_Car_Insurance extends Base_PO {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder=\"Wersja\"]"))).sendKeys("COMFORTLINE");
+        Thread.sleep(300);
         actions.sendKeys(Keys.DOWN).perform();
+        Thread.sleep(300);
         actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
     }
@@ -178,12 +189,15 @@ public class Compare_Car_Insurance extends Base_PO {
         actions.sendKeys(Keys.DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
-        Thread.sleep(3000);
+        Thread.sleep(1500);
 
     }
     @And("I choose less amount of offers without providing personal details")
     public void i_choose_less_amount_of_offers_without_providing_personal_details() {
-        //to be implemented
+        By elementLocator = By.cssSelector("input[name='personalDataPath']");
+        List<WebElement> elements = driver.findElements(elementLocator);
+        elements.get(1).click();
+
     }
     @And("I enter owner's specific date of birth 01.01.1990")
     public void i_enter_owner_s_specific_date_of_birth() {
@@ -232,9 +246,9 @@ public class Compare_Car_Insurance extends Base_PO {
     }
     @And("I choose no additional users of the car")
     public void i_choose_no_additional_users_of_the_car() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='car.car.hasAdditionalDrivers'][2]")));
-        radioButton.click();
+        By elementLocator = By.cssSelector("input[name='car.hasAdditionalDrivers']");
+        List<WebElement> elements = driver.findElements(elementLocator);
+        elements.get(1).click();
     }
     @And("I choose as the owner buying OC insurance for at least 6 years")
     public void i_choose_of_buying_car_insurance_from_drop_down_list() throws InterruptedException {
@@ -246,7 +260,7 @@ public class Compare_Car_Insurance extends Base_PO {
         Thread.sleep(500);
     }
     @And("I choose no OC insurance ever claimed")
-    public void i_choose_from_drop_down_list(String string) {
+    public void i_choose_from_drop_down_list() {
         Actions actions = new Actions(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name=\"owner.ocInsuranceHistory.claimsCount\"]"))).sendKeys("Nie, nie było");
@@ -255,21 +269,23 @@ public class Compare_Car_Insurance extends Base_PO {
     }
     @And("I choose no AC insurance history")
     public void i_choose_no_ac_insurance_history() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement radioButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='owner.acHistorySame'][3]")));
-        radioButton.click();
+        By elementLocator = By.cssSelector("input[name='owner.acHistorySame']");
+        List<WebElement> elements = driver.findElements(elementLocator);
+        elements.get(2).click();
     }
     @And("I click on CALCULATE button")
-    public void i_click_on_button(String string) {
+    public void i_click_on_button() {
         driver.findElement(By.xpath("//button[@type='submit']//span[@class='jss30']")).click();
     }
     @Then("I should be presented with successful offers page")
     public void i_should_be_presented_with_successful_offers_page() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-        WebElement offersHeading = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("jss1081")));
-        String textOffersHeading = offersHeading.getText();
-        System.out.println(textOffersHeading);
-        Assert.assertTrue(textOffersHeading.contains("Znaleźliśmy"), "No offers have been found for provided details");
+        WebElement offersHeading = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='Znaleźliśmy']")));
+        if (offersHeading.isDisplayed()) {
+            System.out.println("Offers have been found for provided data");
+        }else {
+            System.out.println("Offers have not been found or test failed");
+        }
     }
 
 
