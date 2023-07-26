@@ -8,7 +8,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import static driver.DriverFactory.cleanupDriver;
@@ -17,15 +16,15 @@ import static driver.DriverFactory.getDriver;
 public class Hooks {
 
     @Before
-    public void setup(){
+    public void setup() {
         getDriver();
     }
 
     //creating screenshot in report at step that has failed
     @AfterStep
-    public void captureExceptionImage (Scenario scenario){
+    public void captureExceptionImage(Scenario scenario) {
 
-        if (scenario.isFailed()){
+        if (scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
             // Convert timestamp to Date object
             long timestamp = System.currentTimeMillis();
@@ -36,8 +35,9 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", "Attached Image - " + formattedTime);
         }
     }
+
     @After
-    public void tearDown(){
+    public void tearDown() {
         cleanupDriver();
     }
 
