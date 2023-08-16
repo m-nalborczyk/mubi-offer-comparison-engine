@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import com.beust.ah.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,18 +9,27 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObject.Base_PO;
+import pageObject.Compare_Car_Insurance_PO;
 
 import java.time.Duration;
 import java.util.List;
 
 
-public class Compare_Car_Insurance extends Base_PO {
+public class Compare_Car_Insurance_Steps extends Base_PO {
 
     private WebDriver driver = getDriver();
 
+
+    private Compare_Car_Insurance_PO compare_car_insurance_po;
+
+    public Compare_Car_Insurance_Steps(Compare_Car_Insurance_PO compare_car_insurance_po){
+        this.compare_car_insurance_po=compare_car_insurance_po;
+    }
+
+
     @Given("I access Mubi insurance offer comparison page")
     public void i_access_mubi_insurance_offer_comparison_page() {
-        navigateToUrl("https://mubi.pl/");
+        compare_car_insurance_po.navigateTo_Compare_Car_Insurance_Page();
     }
 
     @When("I accept cookies popup")
@@ -90,9 +98,9 @@ public class Compare_Car_Insurance extends Base_PO {
         Thread.sleep(1000);
     }
 
-    @And("I enter a specific date for start of the insurance 01082023")
+    @And("I enter a specific date for start of the insurance 01122023")
     public void i_enter_a_specific_date_for_start_of_the_insurance() {
-        sendKeys(By.xpath("//input[@name=\"insurance.startDate\"]"), "01082023");
+        sendKeys(By.xpath("//input[@name=\"insurance.startDate\"]"), "01122023");
         clickElement(By.xpath("//button[@type='submit']//span[@class='jss30']"));
     }
 
