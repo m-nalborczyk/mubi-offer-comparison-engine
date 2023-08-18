@@ -50,6 +50,11 @@ public class Base_PO {
         wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
     }
 
+    public void sendKeys(WebElement element, String textToType) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
+    }
+
     //handling dynamic list by imitating keyboard user actions DOWN + ENTER for choice confirmation
     public void confirmFromExpandableOptions() throws InterruptedException {
         Actions actions = new Actions(getDriver());

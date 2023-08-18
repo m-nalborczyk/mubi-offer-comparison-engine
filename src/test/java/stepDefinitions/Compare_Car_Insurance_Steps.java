@@ -56,14 +56,12 @@ public class Compare_Car_Insurance_Steps extends Base_PO {
 
     @And("I choose a specific year from the drop down list 2002")
     public void i_choose_a_specific_year_from_the_drop_down_list_2002() throws InterruptedException {
-        sendKeys(By.xpath("//input[@placeholder=\"Rok produkcji\"]"), "2002");
-        confirmFromExpandableOptions();
+        compare_car_insurance_po.sendRokProdukcji("2002");
     }
 
     @And("I choose a specific brand from the drop down list VOLKSWAGEN")
     public void i_choose_a_specific_brand_from_the_drop_down_list_volkswagen() throws InterruptedException {
-        sendKeys(By.xpath("//input[@placeholder=\"Marka\"]"), "VOLKSWAGEN");
-        confirmFromExpandableOptions();
+        compare_car_insurance_po.sendMarka("VOLKSWAGEN");
     }
 
     @And("I choose a specific model from the drop down list PASSAT")

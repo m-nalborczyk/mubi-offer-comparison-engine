@@ -16,7 +16,7 @@ Feature: Mubi - Compare Vehicle Insurance Offers Page
     And I choose a specific engine size from the drop down list 1896cm3
     And I choose a specific doors amount from the drop down list 5doors
     And I choose a specific version from the drop down list COMFORTLINE
-    And I enter a specific date for start of the insurance 01082023
+    And I enter a specific date for start of the insurance 01122023
     And I consent mandatory regulations
     And I choose for private usage
     And I enter a specific mileage 330 thousands km
