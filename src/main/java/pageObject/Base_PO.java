@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Globa_Vars;
 
 import java.time.Duration;
 
@@ -46,12 +47,12 @@ public class Base_PO {
     }
 
     public void sendKeys(By by, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Globa_Vars.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
     }
 
     public void sendKeys(WebElement element, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Globa_Vars.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
     }
 
