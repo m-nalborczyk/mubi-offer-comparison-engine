@@ -2,7 +2,7 @@ package pageObject;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.Globa_Vars;
+import utils.Global_Vars;
 
 public class Compare_Car_Insurance_PO extends Base_PO{
 
@@ -20,7 +20,7 @@ public class Compare_Car_Insurance_PO extends Base_PO{
 
 
     public void navigateTo_Compare_Car_Insurance_Page(){
-        navigateToUrl(Globa_Vars.MUBI_HOMEPAGE_URL);
+        navigateToUrl(Global_Vars.MUBI_HOMEPAGE_URL);
     }
     public void sendRokProdukcji(String rokProdukcji) throws InterruptedException {
         sendKeys(rokProdukcji_TextField, rokProdukcji);
